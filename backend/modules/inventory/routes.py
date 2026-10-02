@@ -6,7 +6,12 @@ from models.response_model import ResponseModel
 router = APIRouter()
 
 
-@router.get("/inventory", tags=["Inventory"])
+@router.get(
+    "/inventory",
+    response_model=ResponseModel,
+    response_model_by_alias=True,
+    tags=["Inventory"],
+)
 async def read_inventory(
     params: GetInventoryQueryParams = Depends(),
 ):
