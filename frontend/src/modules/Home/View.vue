@@ -106,6 +106,12 @@ onMounted(() => {
         </div>
       </div>
     </div>
+    <div class="text-center not-found" v-if="inventoryList.length === 0">
+      <div class="not-found-icon mb-3">
+        <i class="bi bi-search"></i>
+      </div>
+      <p>No inventory items found.</p>
+    </div>
     <div class="inventory-list">
       <InventoryCard
         v-for="item in inventoryList"
@@ -136,5 +142,23 @@ onMounted(() => {
   flex-wrap: wrap;
   gap: 16px;
   justify-content: space-between;
+}
+
+.not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+}
+
+.not-found-icon {
+  font-size: 48px;
+  color: #6c757d;
+}
+
+.not-found p {
+  font-size: 18px;
+  color: #6c757d;
 }
 </style>
