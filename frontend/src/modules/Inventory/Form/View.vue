@@ -105,11 +105,15 @@ const fetchInventoryData = async (id: string) => {
     stock.value = data.stock
     imageUrl.value = data.imageUrl
   } catch (error) {
-    swal.fire({
-      title: 'Error',
-      text: 'Failed to fetch inventory data',
-      icon: 'error',
-    })
+    swal
+      .fire({
+        title: 'Error',
+        text: 'Failed to fetch inventory data',
+        icon: 'error',
+      })
+      .then(() => {
+        router.push({ name: 'home' })
+      })
     console.error(error)
   }
 }
