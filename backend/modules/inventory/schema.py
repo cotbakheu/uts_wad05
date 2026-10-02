@@ -15,6 +15,16 @@ class InventoryItem(BaseModel):
     location: str
 
 
+class CreateInventoryItem(BaseModel):
+    model_config = ConfigDict(alias_generator=to_camel, populate_by_name=True)
+
+    name: str
+    category: str
+    stock: int
+    image_url: str
+    location: str
+
+
 class OrderBy(str, Enum):
     asc = "asc"
     desc = "desc"

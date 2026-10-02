@@ -1,6 +1,10 @@
 from fastapi import APIRouter, Depends
-from modules.inventory.service import get_inventory, create_inventory, delete_inventory
-from modules.inventory.schema import GetInventoryQueryParams, InventoryItem
+from modules.inventory.service import (
+    get_inventory,
+    create_inventory as create_inventory_service,
+    delete_inventory as delete_inventory_service,
+)
+from modules.inventory.schema import GetInventoryQueryParams, CreateInventoryItem
 from models.response_model import ResponseModel
 
 router = APIRouter()
@@ -22,8 +26,8 @@ async def read_inventory(
 
 
 @router.post("/inventory", tags=["Inventory"])
-async def create_inventory(item: InventoryItem):
-    item = create_inventory(item)
+async def create_inventory(item: CreateInventoryItem):
+    item = create_inventory_service(item)
     return ResponseModel(
         status="success", message="Item created successfully", data=item
     )
@@ -31,7 +35,7 @@ async def create_inventory(item: InventoryItem):
 
 @router.delete("/inventory/{item_id}", tags=["Inventory"])
 async def delete_inventory(item_id: int):
-    delete_inventory(item_id)
+    delete_inventory_service(item_id)
     return ResponseModel(
         status="success", message="Item deleted successfully", data=None
     )
