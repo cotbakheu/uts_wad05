@@ -22,3 +22,4 @@ class OrderBy(str, Enum):
 
 class GetInventoryQueryParams(BaseModel):
     order_by: OrderBy = OrderBy.asc
+    name: str | None = None

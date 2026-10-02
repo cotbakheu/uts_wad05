@@ -5,8 +5,11 @@ inventory_item = load_inventory()
 
 
 def get_inventory(params: GetInventoryQueryParams) -> list[InventoryItem]:
+    items = inventory_item
+    if params.name:
+        items = [item for item in items if params.name.lower() in item.name.lower()]
     return sorted(
-        inventory_item,
+        items,
         key=lambda item: item.name,
         reverse=params.order_by == OrderBy.desc,
     )
