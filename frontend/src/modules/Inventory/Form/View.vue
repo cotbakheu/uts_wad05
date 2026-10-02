@@ -115,7 +115,7 @@ const fetchInventoryData = async (id: string) => {
 }
 
 onMounted(() => {
-  if (params.id) {
+  if (params.id && params.id !== 'new') {
     fetchInventoryData(params.id as string)
   }
 })
