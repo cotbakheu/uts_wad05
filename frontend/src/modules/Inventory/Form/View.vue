@@ -3,7 +3,9 @@ import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import type { CreateInventoryItem, InventoryDetailApiResponse } from '../type'
 import swal from 'sweetalert2'
+import Loading from '@/components/Loading.vue'
 
+const isLoading = ref(false)
 const name = ref('')
 const location = ref('')
 const category = ref('')
@@ -44,6 +46,7 @@ const createInventory = async (inventory: CreateInventoryItem) => {
 }
 
 const updateInventory = async (id: string, inventory: CreateInventoryItem) => {
+  isLoading.value = true
   try {
     const response = await fetch(`http://localhost:8000/inventory/${id}`, {
       method: 'PATCH',
@@ -71,6 +74,8 @@ const updateInventory = async (id: string, inventory: CreateInventoryItem) => {
       icon: 'error',
     })
     console.error(error)
+  } finally {
+    isLoading.value = false
   }
 }
 
@@ -92,6 +97,7 @@ const submitForm = (event: Event) => {
 }
 
 const fetchInventoryData = async (id: string) => {
+  isLoading.value = true
   try {
     const response = await fetch(`http://localhost:8000/inventory/${id}`)
     if (!response.ok) {
@@ -115,6 +121,8 @@ const fetchInventoryData = async (id: string) => {
         router.push({ name: 'home' })
       })
     console.error(error)
+  } finally {
+    isLoading.value = false
   }
 }
 
@@ -127,6 +135,7 @@ onMounted(() => {
 
 <template>
   <div class="container">
+    <Loading :show="isLoading" />
     <div class="header">
       <h1>Create Inventory</h1>
       <p>This is the create inventory page of the Inventory App.</p>

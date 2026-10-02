@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import type { InventoryItem } from '../../Inventory/type'
 import swal from 'sweetalert2'
+import Loading from '@/components/Loading.vue'
 
 const emit = defineEmits<{
   (e: 'itemDeleted', id: number): void
@@ -10,7 +12,10 @@ const props = defineProps<{
   item: InventoryItem
 }>()
 
+const isLoading = ref(false)
+
 const deleteItem = async () => {
+  isLoading.value = true
   try {
     const response = await fetch(`http://localhost:8000/inventory/${props.item.id}`, {
       method: 'DELETE',
@@ -35,12 +40,15 @@ const deleteItem = async () => {
       confirmButtonText: 'OK',
     })
     console.error(error)
+  } finally {
+    isLoading.value = false
   }
 }
 </script>
 
 <template>
   <div class="card" style="width: 18rem">
+    <Loading :show="isLoading" />
     <div>
       <img :src="item.imageUrl" class="card-img-top" alt="{{ item.name }}" />
     </div>

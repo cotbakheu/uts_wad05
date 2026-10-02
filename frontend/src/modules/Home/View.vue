@@ -2,10 +2,12 @@
 import { ref, onMounted, watch } from 'vue'
 import InventoryCard from './Components/InventoryCard.vue'
 import type { InventoryItem, InventoryApiResponse } from '../Inventory/type'
+import Loading from '@/components/Loading.vue'
 
 const inventoryList = ref<InventoryItem[]>([])
 const searchQuery = ref('')
 const orderBy = ref<'asc' | 'desc'>('asc')
+const isLoading = ref(false)
 
 const fetchInventory = async () => {
   const queryParams = new URLSearchParams()
@@ -15,6 +17,7 @@ const fetchInventory = async () => {
   if (orderBy.value) {
     queryParams.append('order_by', orderBy.value)
   }
+  isLoading.value = true
   try {
     const response = await fetch(`http://localhost:8000/inventory?${queryParams.toString()}`)
     if (!response.ok) {
@@ -24,6 +27,8 @@ const fetchInventory = async () => {
     inventoryList.value = data.data
   } catch (error) {
     console.error(error)
+  } finally {
+    isLoading.value = false
   }
 }
 
@@ -48,6 +53,7 @@ onMounted(() => {
 
 <template>
   <div class="container py-5">
+    <Loading :show="isLoading" />
     <div class="header">
       <h1 class="title">Current Available Inventory</h1>
       <p class="description">Here you can find the current available inventory.</p>
