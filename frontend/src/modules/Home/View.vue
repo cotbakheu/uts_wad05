@@ -85,10 +85,9 @@ onMounted(() => {
         <input
           v-model="searchQuery"
           type="text"
-          class="form-control w-100 w-md-auto"
+          class="form-control"
           id="searchInventory"
           placeholder="Search Inventory by Name"
-          style="width: 300px"
         />
         <button class="btn btn-primary" @click="fetchInventory">Search</button>
         <button class="btn btn-secondary" @click="resetSearch">Reset</button>
@@ -140,7 +139,10 @@ onMounted(() => {
       <span class="badge bg-info">Category Amount: {{ categoryAmount }}</span>
       <span class="badge bg-success">Total Units: {{ totalUnits }}</span>
     </div>
-    <div class="inventory-list">
+    <div
+      class="inventory-list"
+      :class="[{ 'justify-content-between': totalInventory > 4, 'gap-5': totalInventory <= 4 }]"
+    >
       <InventoryCard
         v-for="item in inventoryList"
         :key="item.id"
@@ -168,8 +170,6 @@ onMounted(() => {
 .inventory-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
-  justify-content: space-between;
 }
 
 .not-found {
@@ -188,5 +188,15 @@ onMounted(() => {
 .not-found p {
   font-size: 18px;
   color: #6c757d;
+}
+
+.form-control {
+  width: 300px;
+}
+
+@media (max-width: 768px) {
+  .form-control {
+    width: 100%;
+  }
 }
 </style>
