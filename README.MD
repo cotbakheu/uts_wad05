@@ -40,11 +40,11 @@ also reflect an active name search:
 
 Each inventory card also shows a stock status based on the item's stock value:
 
-| Stock value | Status | Meaning |
-| --- | --- | --- |
-| Greater than `10` | **In Stock** | The item has sufficient available stock. |
-| `1` through `10` | **Low Stock** | The item is available but needs attention. |
-| `0` or less | **Out of Stock** | The item has no available stock. |
+| Stock value       | Status           | Meaning                                    |
+| ----------------- | ---------------- | ------------------------------------------ |
+| Greater than `10` | **In Stock**     | The item has sufficient available stock.   |
+| `1` through `10`  | **Low Stock**    | The item is available but needs attention. |
+| `0` or less       | **Out of Stock** | The item has no available stock.           |
 
 ### Folder structure
 
@@ -167,13 +167,13 @@ uv run uvicorn main:app --reload
 
 ### API endpoints
 
-| Method | Endpoint | Description |
-| --- | --- | --- |
-| `GET` | `/inventory` | List, search, and sort inventory |
-| `GET` | `/inventory/{item_id}` | Retrieve one inventory item |
-| `POST` | `/inventory` | Create an inventory item |
-| `PATCH` | `/inventory/{item_id}` | Update an inventory item |
-| `DELETE` | `/inventory/{item_id}` | Delete an inventory item |
+| Method   | Endpoint               | Description                      |
+| -------- | ---------------------- | -------------------------------- |
+| `GET`    | `/inventory`           | List, search, and sort inventory |
+| `GET`    | `/inventory/{item_id}` | Retrieve one inventory item      |
+| `POST`   | `/inventory`           | Create an inventory item         |
+| `PATCH`  | `/inventory/{item_id}` | Update an inventory item         |
+| `DELETE` | `/inventory/{item_id}` | Delete an inventory item         |
 
 ## Application screenshots
 
@@ -181,12 +181,12 @@ Replace the placeholder paths below with your screenshots:
 
 ### Home page
 
-![Home page screenshot](./docs/screenshots/home-page.png)
+![Home page screenshot](./docs/landing-page.png)
 
 ### Create inventory page
 
-![Create inventory screenshot](./docs/screenshots/create-inventory.png)
+![Create inventory screenshot](./docs/form.png)
 
-### Edit inventory page
+### Responsive page
 
-![Edit inventory screenshot](./docs/screenshots/edit-inventory.png)
+![Responsive Page](./docs/responsive.png)
