@@ -1,6 +1,4 @@
-from http.client import HTTPException
-
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from modules.inventory.service import (
     get_inventory,
     create_inventory as create_inventory_service,
