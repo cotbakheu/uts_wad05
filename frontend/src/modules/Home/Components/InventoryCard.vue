@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import type { InventoryItem } from '../../Inventory/type'
 import swal from 'sweetalert2'
 import Loading from '@/components/Loading.vue'
@@ -13,6 +13,16 @@ const props = defineProps<{
 }>()
 
 const isLoading = ref(false)
+
+const stockStatus = computed(() => {
+  if (props.item.stock > 10) {
+    return 'In Stock'
+  } else if (props.item.stock > 0) {
+    return 'Low Stock'
+  } else {
+    return 'Out of Stock'
+  }
+})
 
 const deleteItem = async () => {
   isLoading.value = true
@@ -55,9 +65,14 @@ const deleteItem = async () => {
     <div class="card-body">
       <h5 class="card-title">{{ item.name }}</h5>
       <p class="card-text"><strong>Location:</strong> {{ item.location }}</p>
-      <div class="d-flex justify-content-between align-items-center mb-3">
+      <div class="d-flex justify-content-between w-100 align-items-start mb-3">
         <span class="badge bg-primary">Category: {{ item.category }}</span>
-        <span class="badge bg-success">Stock: {{ item.stock }}</span>
+        <div class="d-flex flex-column align-items-end gap-1">
+          <span class="badge bg-success">Stock: {{ item.stock }}</span>
+          <span class="badge bg-info" v-if="stockStatus === 'In Stock'">In Stock</span>
+          <span class="badge bg-warning" v-if="stockStatus === 'Low Stock'">Low Stock</span>
+          <span class="badge bg-danger" v-if="stockStatus === 'Out of Stock'">Out of Stock</span>
+        </div>
       </div>
       <div class="d-flex justify-content-end align-items-center gap-2">
         <button @click="deleteItem" class="btn btn-danger"><i class="bi bi-trash"></i></button>

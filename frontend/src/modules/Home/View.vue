@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted, watch, computed } from 'vue'
 import InventoryCard from './Components/InventoryCard.vue'
 import type { InventoryItem, InventoryApiResponse } from '../Inventory/type'
 import Loading from '@/components/Loading.vue'
@@ -8,6 +8,18 @@ const inventoryList = ref<InventoryItem[]>([])
 const searchQuery = ref('')
 const orderBy = ref<'asc' | 'desc'>('asc')
 const isLoading = ref(false)
+
+const totalInventory = computed(() => inventoryList.value.length)
+const warningStockCount = computed(
+  () => inventoryList.value.filter((item) => item.stock >= 0 && item.stock <= 10).length,
+)
+const categoryAmount = computed(() => {
+  const categorySet = new Set(inventoryList.value.map((item) => item.category))
+  return categorySet.size
+})
+const totalUnits = computed(() => {
+  return inventoryList.value.reduce((total, item) => total + item.stock, 0)
+})
 
 const fetchInventory = async () => {
   const queryParams = new URLSearchParams()
@@ -121,6 +133,12 @@ onMounted(() => {
         <i class="bi bi-search"></i>
       </div>
       <p>No inventory items found.</p>
+    </div>
+    <div class="d-flex flex-wrap gap-2 mb-3" v-if="inventoryList.length > 0">
+      <span class="badge bg-primary">Total Items: {{ totalInventory }}</span>
+      <span class="badge bg-warning">Warning Stock: {{ warningStockCount }}</span>
+      <span class="badge bg-info">Category Amount: {{ categoryAmount }}</span>
+      <span class="badge bg-success">Total Units: {{ totalUnits }}</span>
     </div>
     <div class="inventory-list">
       <InventoryCard
