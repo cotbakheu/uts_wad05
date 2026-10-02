@@ -35,6 +35,16 @@ def create_inventory(item: CreateInventoryItem) -> InventoryItem:
     return inventory
 
 
+def update_inventory(item_id: int, item: CreateInventoryItem) -> InventoryItem | None:
+    global inventory_item
+    for index, existing_item in enumerate(inventory_item):
+        if existing_item.id == item_id:
+            updated_item = InventoryItem(id=item_id, **item.model_dump())
+            inventory_item[index] = updated_item
+            return updated_item
+    return None
+
+
 def delete_inventory(item_id: int) -> None:
     global inventory_item
     inventory_item = [item for item in inventory_item if item.id != item_id]

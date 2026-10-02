@@ -6,6 +6,7 @@ from modules.inventory.service import (
     create_inventory as create_inventory_service,
     delete_inventory as delete_inventory_service,
     get_inventory_by_id as get_inventory_by_id_service,
+    update_inventory as update_inventory_service,
 )
 from modules.inventory.schema import GetInventoryQueryParams, CreateInventoryItem
 from models.response_model import ResponseModel
@@ -48,6 +49,16 @@ async def create_inventory(item: CreateInventoryItem):
     item = create_inventory_service(item)
     return ResponseModel(
         status="success", message="Item created successfully", data=item
+    )
+
+
+@router.patch("/inventory/{item_id}", tags=["Inventory"])
+async def update_inventory(item_id: int, item: CreateInventoryItem):
+    updated_item = update_inventory_service(item_id, item)
+    if not updated_item:
+        raise HTTPException(status_code=404, detail="Item not found")
+    return ResponseModel(
+        status="success", message="Item updated successfully", data=updated_item
     )
 
 
