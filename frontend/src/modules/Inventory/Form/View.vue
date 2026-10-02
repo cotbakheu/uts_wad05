@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import type { CreateInventoryItem } from '../type'
+import type { CreateInventoryItem, InventoryDetailApiResponse } from '../type'
+import swal from 'sweetalert2'
 
 const name = ref('')
 const location = ref('')
@@ -9,8 +10,9 @@ const category = ref('')
 const stock = ref(0)
 const imageUrl = ref('')
 const router = useRouter()
+const params = router.currentRoute.value.params
 
-const sendInventoryData = async (inventory: CreateInventoryItem) => {
+const createInventory = async (inventory: CreateInventoryItem) => {
   try {
     const response = await fetch('http://localhost:8000/inventory', {
       method: 'POST',
@@ -25,8 +27,49 @@ const sendInventoryData = async (inventory: CreateInventoryItem) => {
     }
 
     const data = await response.json()
+    await swal.fire({
+      title: 'Success',
+      text: 'Inventory item created successfully',
+      icon: 'success',
+    })
     router.push({ name: 'home' })
   } catch (error) {
+    swal.fire({
+      title: 'Error',
+      text: 'Failed to create inventory item',
+      icon: 'error',
+    })
+    console.error(error)
+  }
+}
+
+const updateInventory = async (id: string, inventory: CreateInventoryItem) => {
+  try {
+    const response = await fetch(`http://localhost:8000/inventory/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(inventory),
+    })
+
+    if (!response.ok) {
+      throw new Error('Failed to update inventory item')
+    }
+
+    const data = await response.json()
+    await swal.fire({
+      title: 'Success',
+      text: 'Inventory item updated successfully',
+      icon: 'success',
+    })
+    router.push({ name: 'home' })
+  } catch (error) {
+    await swal.fire({
+      title: 'Error',
+      text: 'Failed to update inventory item',
+      icon: 'error',
+    })
     console.error(error)
   }
 }
@@ -41,8 +84,41 @@ const submitForm = (event: Event) => {
     imageUrl: imageUrl.value,
   }
 
-  sendInventoryData(newInventory)
+  if (params.id && params.id !== 'new') {
+    updateInventory(params.id as string, newInventory)
+  } else {
+    createInventory(newInventory)
+  }
 }
+
+const fetchInventoryData = async (id: string) => {
+  try {
+    const response = await fetch(`http://localhost:8000/inventory/${id}`)
+    if (!response.ok) {
+      throw new Error('Failed to fetch inventory data')
+    }
+    const responseData: InventoryDetailApiResponse = await response.json()
+    const data = responseData.data
+    name.value = data.name
+    location.value = data.location
+    category.value = data.category
+    stock.value = data.stock
+    imageUrl.value = data.imageUrl
+  } catch (error) {
+    swal.fire({
+      title: 'Error',
+      text: 'Failed to fetch inventory data',
+      icon: 'error',
+    })
+    console.error(error)
+  }
+}
+
+onMounted(() => {
+  if (params.id) {
+    fetchInventoryData(params.id as string)
+  }
+})
 </script>
 
 <template>
@@ -106,8 +182,12 @@ const submitForm = (event: Event) => {
         </div>
       </div>
 
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <div class="d-flex justify-content-end">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
     </form>
+    <br />
+    <br />
   </div>
 </template>
 
