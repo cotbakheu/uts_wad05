@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../modules/Home/View.vue'
-import CreatePropertyView from '../modules/CreateProperty/View.vue'
+import InventoryForm from '../modules/Inventory/Form/View.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -11,9 +11,9 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: '/create-property',
-      name: 'create-property',
-      component: CreatePropertyView,
+      path: '/inventory/:id',
+      name: 'inventory-form',
+      component: InventoryForm,
     },
   ],
 })
