@@ -11,7 +11,6 @@
       "location": "Warehouse B",
       "image_url": "https://picsum.photos/id/1/250/250"
     },
-
     {
       "id": 2,
       "name": "Samsung Galaxy S21",
@@ -35,6 +34,134 @@
       "stock": 50,
       "location": "Warehouse D",
       "image_url": "https://picsum.photos/id/4/250/250"
+    },
+    {
+      "id": 5,
+      "name": "Mechanical Keyboard",
+      "category": "Electronics",
+      "stock": 18,
+      "location": "Warehouse A",
+      "image_url": "https://picsum.photos/id/5/250/250"
+    },
+    {
+      "id": 6,
+      "name": "Wireless Mouse",
+      "category": "Electronics",
+      "stock": 32,
+      "location": "Warehouse A",
+      "image_url": "https://picsum.photos/id/6/250/250"
+    },
+    {
+      "id": 7,
+      "name": "Office Desk",
+      "category": "Furniture",
+      "stock": 8,
+      "location": "Warehouse C",
+      "image_url": "https://picsum.photos/id/7/250/250"
+    },
+    {
+      "id": 8,
+      "name": "Monitor 24 Inch",
+      "category": "Electronics",
+      "stock": 12,
+      "location": "Warehouse B",
+      "image_url": "https://picsum.photos/id/8/250/250"
+    },
+    {
+      "id": 9,
+      "name": "USB Flash Drive 64GB",
+      "category": "Storage",
+      "stock": 40,
+      "location": "Warehouse A",
+      "image_url": "https://picsum.photos/id/9/250/250"
+    },
+    {
+      "id": 10,
+      "name": "External Hard Drive 1TB",
+      "category": "Storage",
+      "stock": 14,
+      "location": "Warehouse B",
+      "image_url": "https://picsum.photos/id/10/250/250"
+    },
+    {
+      "id": 11,
+      "name": "Printer Epson L3210",
+      "category": "Electronics",
+      "stock": 7,
+      "location": "Warehouse D",
+      "image_url": "https://picsum.photos/id/11/250/250"
+    },
+    {
+      "id": 12,
+      "name": "A4 Paper",
+      "category": "Stationery",
+      "stock": 100,
+      "location": "Warehouse D",
+      "image_url": "https://picsum.photos/id/12/250/250"
+    },
+    {
+      "id": 13,
+      "name": "Office Cabinet",
+      "category": "Furniture",
+      "stock": 6,
+      "location": "Warehouse C",
+      "image_url": "https://picsum.photos/id/13/250/250"
+    },
+    {
+      "id": 14,
+      "name": "Webcam Logitech",
+      "category": "Electronics",
+      "stock": 20,
+      "location": "Warehouse A",
+      "image_url": "https://picsum.photos/id/14/250/250"
+    },
+    {
+      "id": 15,
+      "name": "HDMI Cable",
+      "category": "Accessories",
+      "stock": 45,
+      "location": "Warehouse A",
+      "image_url": "https://picsum.photos/id/15/250/250"
+    },
+    {
+      "id": 16,
+      "name": "Power Strip",
+      "category": "Accessories",
+      "stock": 28,
+      "location": "Warehouse B",
+      "image_url": "https://picsum.photos/id/16/250/250"
+    },
+    {
+      "id": 17,
+      "name": "Headset Gaming",
+      "category": "Electronics",
+      "stock": 16,
+      "location": "Warehouse B",
+      "image_url": "https://picsum.photos/id/17/250/250"
+    },
+    {
+      "id": 18,
+      "name": "Whiteboard",
+      "category": "Office Supplies",
+      "stock": 9,
+      "location": "Warehouse C",
+      "image_url": "https://picsum.photos/id/18/250/250"
+    },
+    {
+      "id": 19,
+      "name": "Ballpoint Pen",
+      "category": "Stationery",
+      "stock": 150,
+      "location": "Warehouse D",
+      "image_url": "https://picsum.photos/id/19/250/250"
+    },
+    {
+      "id": 20,
+      "name": "USB-C Charger",
+      "category": "Accessories",
+      "stock": 22,
+      "location": "Warehouse A",
+      "image_url": "https://picsum.photos/id/20/250/250"
     }
   ]
 }
