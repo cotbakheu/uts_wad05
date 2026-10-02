@@ -149,7 +149,7 @@ onMounted(() => {
       <h1>Create Inventory</h1>
       <p>This is the create inventory page of the Inventory App.</p>
     </div>
-    <form class="w-50 mx-auto" @submit="submitForm">
+    <form class="responsive-width mx-auto" @submit="submitForm">
       <div class="mb-3">
         <label for="inventoryName" class="form-label">Name</label>
         <input
@@ -233,5 +233,10 @@ onMounted(() => {
   max-width: 100%;
   height: auto;
   border-radius: 5px;
+}
+
+.responsive-width {
+  max-width: 500px;
+  width: 100%;
 }
 </style>

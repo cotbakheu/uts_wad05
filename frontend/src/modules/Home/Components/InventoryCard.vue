@@ -47,7 +47,7 @@ const deleteItem = async () => {
 </script>
 
 <template>
-  <div class="card" style="width: 18rem">
+  <div class="card">
     <Loading :show="isLoading" />
     <div>
       <img :src="item.imageUrl" class="card-img-top" alt="{{ item.name }}" />
@@ -75,5 +75,15 @@ const deleteItem = async () => {
 .card img {
   height: 270px;
   width: 100%;
+}
+
+.card {
+  width: 18rem;
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 100%;
+  }
 }
 </style>

@@ -63,13 +63,17 @@ onMounted(() => {
       >
         Add New Inventory
       </button>
+      <br />
+      <br />
     </div>
-    <div class="mb-3 d-flex justify-content-between align-items-center">
-      <div class="d-flex gap-3">
+    <div
+      class="mb-3 d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3"
+    >
+      <div class="d-flex flex-column flex-md-row gap-3">
         <input
           v-model="searchQuery"
           type="text"
-          class="form-control"
+          class="form-control w-100 w-md-auto"
           id="searchInventory"
           placeholder="Search Inventory by Name"
           style="width: 300px"
@@ -80,7 +84,7 @@ onMounted(() => {
       <div>
         <div class="dropdown">
           <button
-            class="btn btn-secondary"
+            class="btn btn-secondary w-100 w-md-auto"
             type="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
