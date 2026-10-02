@@ -47,6 +47,12 @@ onMounted(() => {
     <div class="header">
       <h1 class="title">Current Available Inventory</h1>
       <p class="description">Here you can find the current available inventory.</p>
+      <button
+        class="btn btn-primary"
+        @click="$router.push({ name: 'inventory-form', params: { id: 'new' } })"
+      >
+        Add New Inventory
+      </button>
     </div>
     <div class="mb-3 d-flex justify-content-between align-items-center">
       <div class="d-flex gap-3">

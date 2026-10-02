@@ -1,2 +1,2 @@
-export type { InventoryItem } from './inventoryType'
+export type { InventoryItem, CreateInventoryItem } from './inventoryType'
 export type { InventoryApiResponse } from './inventoryApiResponse'
