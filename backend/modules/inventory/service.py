@@ -10,3 +10,8 @@ def get_inventory(params: GetInventoryQueryParams) -> list[InventoryItem]:
         key=lambda item: item.name,
         reverse=params.order_by == OrderBy.desc,
     )
+
+
+def create_inventory(item: InventoryItem) -> InventoryItem:
+    inventory_item.append(item)
+    return item

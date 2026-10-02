@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
-from modules.inventory.service import get_inventory
-from modules.inventory.schema import GetInventoryQueryParams
+from modules.inventory.service import get_inventory, create_inventory
+from modules.inventory.schema import GetInventoryQueryParams, InventoryItem
 
 router = APIRouter()
 
@@ -11,3 +11,9 @@ async def read_inventory(
 ):
     inventory = get_inventory(params)
     return inventory
+
+
+@router.post("/inventory", tags=["Inventory"])
+async def create_inventory(item: InventoryItem):
+    item = create_inventory(item)
+    return item
