@@ -170,6 +170,7 @@ onMounted(() => {
 .inventory-list {
   display: flex;
   flex-wrap: wrap;
+  gap: 20px;
 }
 
 .not-found {
