@@ -20,6 +20,13 @@ def get_inventory(params: GetInventoryQueryParams) -> list[InventoryItem]:
     )
 
 
+def get_inventory_by_id(item_id: int) -> InventoryItem | None:
+    for item in inventory_item:
+        if item.id == item_id:
+            return item
+    return None
+
+
 def create_inventory(item: CreateInventoryItem) -> InventoryItem:
     global inventory_item
     next_id = max((item.id for item in inventory_item), default=0) + 1

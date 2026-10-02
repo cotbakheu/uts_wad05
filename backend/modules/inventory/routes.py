@@ -1,8 +1,11 @@
+from http.client import HTTPException
+
 from fastapi import APIRouter, Depends
 from modules.inventory.service import (
     get_inventory,
     create_inventory as create_inventory_service,
     delete_inventory as delete_inventory_service,
+    get_inventory_by_id as get_inventory_by_id_service,
 )
 from modules.inventory.schema import GetInventoryQueryParams, CreateInventoryItem
 from models.response_model import ResponseModel
@@ -22,6 +25,21 @@ async def read_inventory(
     inventory = get_inventory(params)
     return ResponseModel(
         status="success", message="Inventory retrieved successfully", data=inventory
+    )
+
+
+@router.get(
+    "/inventory/{item_id}",
+    response_model=ResponseModel,
+    response_model_by_alias=True,
+    tags=["Inventory"],
+)
+def read_inventory_by_id(item_id: int):
+    item = get_inventory_by_id_service(item_id)
+    if not item:
+        raise HTTPException(status_code=404, detail="Item not found")
+    return ResponseModel(
+        status="success", message="Item retrieved successfully", data=item
     )
 
 
