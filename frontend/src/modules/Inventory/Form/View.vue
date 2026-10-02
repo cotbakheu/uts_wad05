@@ -60,7 +60,6 @@ const updateInventory = async (id: string, inventory: CreateInventoryItem) => {
       throw new Error('Failed to update inventory item')
     }
 
-    const data = await response.json()
     await swal.fire({
       title: 'Success',
       text: 'Inventory item updated successfully',
@@ -73,7 +72,6 @@ const updateInventory = async (id: string, inventory: CreateInventoryItem) => {
       text: 'Failed to update inventory item',
       icon: 'error',
     })
-    console.error(error)
   } finally {
     isLoading.value = false
   }
@@ -101,7 +99,19 @@ const fetchInventoryData = async (id: string) => {
   try {
     const response = await fetch(`http://localhost:8000/inventory/${id}`)
     if (!response.ok) {
-      throw new Error('Failed to fetch inventory data')
+      let errorMessage = 'Failed to fetch inventory data'
+      if (response.status === 404) {
+        errorMessage = 'Inventory item not found'
+      }
+      return swal
+        .fire({
+          title: 'Error',
+          text: errorMessage,
+          icon: 'error',
+        })
+        .then(() => {
+          router.push({ name: 'home' })
+        })
     }
     const responseData: InventoryDetailApiResponse = await response.json()
     const data = responseData.data
@@ -120,7 +130,6 @@ const fetchInventoryData = async (id: string) => {
       .then(() => {
         router.push({ name: 'home' })
       })
-    console.error(error)
   } finally {
     isLoading.value = false
   }
