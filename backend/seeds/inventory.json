@@ -1,0 +1,39 @@
+{
+  "name": "inventory",
+  "version": "1.0.0",
+  "description": "Inventory management system",
+  "data": [
+    {
+      "id": 1,
+      "name": "Laptop",
+      "category": "Electronics",
+      "stock": 10,
+      "location": "Warehouse A",
+      "image_url": "laptop.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Smartphone",
+      "category": "Electronics",
+      "stock": 25,
+      "location": "Warehouse B",
+      "image_url": "smartphone.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Desk Chair",
+      "category": "Furniture",
+      "stock": 15,
+      "location": "Warehouse C",
+      "image_url": "desk_chair.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Notebook",
+      "category": "Stationery",
+      "stock": 50,
+      "location": "Warehouse D",
+      "image_url": "notebook.jpg"
+    }
+  ]
+}
