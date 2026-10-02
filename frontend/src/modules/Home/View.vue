@@ -33,6 +33,10 @@ const resetSearch = () => {
   fetchInventory()
 }
 
+const handleItemDeleted = (id: number) => {
+  fetchInventory()
+}
+
 watch(orderBy, () => {
   fetchInventory()
 })
@@ -103,7 +107,12 @@ onMounted(() => {
       </div>
     </div>
     <div class="inventory-list">
-      <InventoryCard v-for="item in inventoryList" :key="item.id" :item="item" />
+      <InventoryCard
+        v-for="item in inventoryList"
+        :key="item.id"
+        :item="item"
+        @item-deleted="handleItemDeleted"
+      />
     </div>
   </div>
 </template>
