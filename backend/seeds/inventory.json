@@ -5,15 +5,16 @@
   "data": [
     {
       "id": 1,
-      "name": "Laptop",
+      "name": "Laptop Asus ROG",
       "category": "Electronics",
       "stock": 10,
-      "location": "Warehouse A",
+      "location": "Warehouse B",
       "image_url": "https://picsum.photos/id/1/250/250"
     },
+
     {
       "id": 2,
-      "name": "Smartphone",
+      "name": "Samsung Galaxy S21",
       "category": "Electronics",
       "stock": 25,
       "location": "Warehouse B",
