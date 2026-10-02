@@ -26,6 +26,26 @@ Available pages:
 The frontend displays loading indicators during API requests and uses
 SweetAlert2 for success and error notifications.
 
+### Inventory summary and stock status
+
+The Home page shows summary counters above the inventory cards. These counters
+are calculated from the inventory currently loaded on the page, so the values
+also reflect an active name search:
+
+- **Total Items** - Number of inventory items currently displayed.
+- **Warning Stock** - Number of items with stock from `0` through `10`,
+  inclusive. This includes items with zero stock.
+- **Category Amount** - Number of unique categories among the displayed items.
+- **Total Units** - Sum of the stock values for all displayed items.
+
+Each inventory card also shows a stock status based on the item's stock value:
+
+| Stock value | Status | Meaning |
+| --- | --- | --- |
+| Greater than `10` | **In Stock** | The item has sufficient available stock. |
+| `1` through `10` | **Low Stock** | The item is available but needs attention. |
+| `0` or less | **Out of Stock** | The item has no available stock. |
+
 ### Folder structure
 
 ```text
